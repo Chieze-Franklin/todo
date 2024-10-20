@@ -34,7 +34,7 @@ const ToDo = () => {
 
   const addTask = (text: string) => {
     if (text.trim() === '') return;
-    const task: Task = { id: Date.now().toString(), text, isComplete: false, date: new Date(new Date().setHours(new Date().getHours() + 1)), group: selectedGroup };
+    const task: Task = { id: Date.now().toString(), text, isComplete: false, deadline: new Date(new Date().setHours(new Date().getHours() + 1)), group: selectedGroup };
     setTasks([...tasks, task]);
     setInputText('');
   };

@@ -29,14 +29,14 @@ const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: { task: Task, 
       </div>
       {isExpanded && (
           <div className='flex flex-col gap-2 pl-10'>
-              <p className='text-xs text-slate-600'>Created on {task.date.toLocaleString()}</p>
+              <p className='text-xs text-slate-600'>Created on {task.deadline.toLocaleString()}</p>
               <div className='flex gap-2'>
               <GroupsDropDown groups={groups} initialGroup={task.group} onSelectGroup={selectGroup} readonly />
               <AddToCalendarButton
                 name={task.text}
-                startDate={new Date(task.date).toISOString()}
+                startDate={new Date(task.deadline).toISOString()}
                 // end date should be 2 hours after the start date
-                endDate={new Date(new Date(task.date).setHours(new Date(task.date).getHours() + 1)).toISOString()}
+                endDate={new Date(new Date(task.deadline).setHours(new Date(task.deadline).getHours() + 1)).toISOString()}
                 // buttonStyle='date'
                 // hideTextLabelButton={true}
                 options={['Apple','Google','Yahoo','iCal', 'Microsoft365', 'MicrosoftTeams', 'Outlook.com']}
