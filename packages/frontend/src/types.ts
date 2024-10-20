@@ -1,7 +1,8 @@
 export type Task = {
     id: string;
     text: string;
+    description?: string;
     isComplete: boolean;
-    date: Date;
+    deadline: Date;
     group?: string;
 };
