@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int    @id @default(autoincrement())
+  email      String @db.VarChar(255)
+  groups      Group[]
+  password   String @db.VarChar(255)
+  tasks      Task[]
+
+  @@map("user")
+}
+
+model Task {
+  id         Int    @id @default(autoincrement())
+  deadline   DateTime
+  description      String? @db.VarChar(255)
+  isDone     Boolean @default(false)
+  priority   Priority? @default(MEDIUM)
+  progress   Int? @default(0)
+  title      String @db.VarChar(255)
+  group      Group?   @relation(fields: [groupId], references: [id])
+  groupId    Int?
+  user       User   @relation(fields: [userId], references: [id])
+  userId     Int
+
+  @@map("task")
+}
+
+model Group {
+  id         Int    @id @default(autoincrement())
+  title      String @db.VarChar(255)
+  tasks      Task[]
+  user       User   @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@map("group")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}

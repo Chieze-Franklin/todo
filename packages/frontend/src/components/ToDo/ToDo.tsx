@@ -34,7 +34,7 @@ const ToDo = () => {
 
   const addTask = (text: string) => {
     if (text.trim() === '') return;
-    const task: Task = { id: Date.now().toString(), text, isComplete: false, deadline: new Date(new Date().setHours(new Date().getHours() + 1)), group: selectedGroup };
+    const task: Task = { id: Date.now(), title: text, isDone: false, deadline: new Date(new Date().setHours(new Date().getHours() + 1)), group: selectedGroup };
     setTasks([...tasks, task]);
     setInputText('');
   };
@@ -43,7 +43,7 @@ const ToDo = () => {
     setGroups(groups.filter(g => g !== group));
   }
 
-  const deleteTask = (id: string) => {
+  const deleteTask = (id: number) => {
     setTasks(tasks.filter(task => task.id !== id));
   }
 
@@ -53,11 +53,11 @@ const ToDo = () => {
     setSelectedGroup(group);
   }
 
-  const toggleTask = (id: string) => {
-    setTasks(tasks.map(task => task.id === id ? { ...task, isComplete: !task.isComplete } : task));
+  const toggleTask = (id: number) => {
+    setTasks(tasks.map(task => task.id === id ? { ...task, isDone: !task.isDone } : task));
   }
 
-  const updateTask = (id: string, task: Task) => {
+  const updateTask = (id: number, task: Task) => {
     setTasks(tasks.map(t => t.id === id ? task : t));
   }
 

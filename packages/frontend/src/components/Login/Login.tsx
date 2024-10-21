@@ -6,8 +6,7 @@ const Login = () => {
         const password = formData.get('password') as string;
         console.log(email, password);
 
-        // send email and password to the server using fetch, and if the server responds with 'login' set the token cookie and reload the page
-        fetch('http://localhost:3000/login', {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -16,6 +15,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.token) {
                     sessionStorage.setItem('token', data.token);
                     window.location.reload();
