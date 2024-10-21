@@ -3,10 +3,12 @@
     "packageManager": "yarn@3.3.0",
     "private": true,
     "scripts": {
+        "build:frontend": "yarn workspace @todo/frontend tsc -b && vite build",
         "dev:backend": "yarn workspace @todo/backend nodemon src/index.ts",
         "dev:frontend": "yarn workspace @todo/frontend vite",
         "git:push": "git push origin $(git symbolic-ref --short HEAD)",
         "publish:frontend": "yarn workspace @todo/frontend publish --access public",
+        "start:frontend": "yarn workspace @todo/frontend vite preview",
         "version:frontend": "yarn workspace @todo/frontend version patch --new-version $VERSION"
     },
     "workspaces": [

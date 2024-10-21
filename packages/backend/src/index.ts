@@ -9,6 +9,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
 app.get('/tasks', jwtAuth, getTasks);
 
 app.listen(3000, () => {
