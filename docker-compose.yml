@@ -26,6 +26,7 @@ services:
         command: bash -c "yarn start"
         environment:
             DATABASE_URL: "${DATABASE_URL}"
+            SECRET: "${SECRET}"
         depends_on:
             postgres:
                 condition: service_healthy

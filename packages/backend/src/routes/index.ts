@@ -1,2 +1,2 @@
 export { getTasks } from './tasks';
-export { login, logout, jwtAuth } from './auth';
+export { login, jwtAuth } from './auth';

@@ -3,6 +3,7 @@
     "packageManager": "yarn@3.3.0",
     "private": true,
     "scripts": {
+        "build:backend": "yarn workspace @todo/backend npx prisma migrate reset --force && tsc",
         "build:frontend": "yarn workspace @todo/frontend tsc -b && vite build",
         "dev:backend": "yarn workspace @todo/backend nodemon src/index.ts",
         "dev:frontend": "yarn workspace @todo/frontend vite",

@@ -8,7 +8,7 @@ import expandIcon from '../../assets/expand.svg';
 import collapseIcon from '../../assets/collapse.svg';
 import GroupsDropDown from '../GroupsDropDown';
 
-const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: { task: Task, groups: string[], onDelete: (id: string) => void, onToggle: (id: string) => void, onUpdate: (id: string, task: Task) => void }) => {
+const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: { task: Task, groups: string[], onDelete: (id: number) => void, onToggle: (id: number) => void, onUpdate: (id: number, task: Task) => void }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const selectGroup = (group: string) => {
@@ -19,8 +19,8 @@ const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: { task: Task, 
     <div className='flex flex-col my-3 gap-2'>
       <div className='flex items-center gap-2'>
           <div className='flex flex-1 items-center cursor-pointer' onClick={() => onToggle(task.id)}>
-              <img src={task.isComplete ? tickIcon : notTickIcon} alt="check" className='w-7' />
-              <p className={`text-slate-700 ml-4 text-[17px] ${task.isComplete ? 'line-through' : ''}`}>{task.text}</p>
+              <img src={task.isDone ? tickIcon : notTickIcon} alt="check" className='w-7' />
+              <p className={`text-slate-700 ml-4 text-[17px] ${task.isDone ? 'line-through' : ''}`}>{task.title}</p>
           </div>
           <div className='flex items-center gap-2'>
               <img src={isExpanded ? collapseIcon : expandIcon} alt="more" className='w-3.5 cursor-pointer' onClick={() => setIsExpanded((prev) => !prev)} />
@@ -33,7 +33,7 @@ const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: { task: Task, 
               <div className='flex gap-2'>
               <GroupsDropDown groups={groups} initialGroup={task.group} onSelectGroup={selectGroup} readonly />
               <AddToCalendarButton
-                name={task.text}
+                name={task.title}
                 startDate={new Date(task.deadline).toISOString()}
                 // end date should be 2 hours after the start date
                 endDate={new Date(new Date(task.deadline).setHours(new Date(task.deadline).getHours() + 1)).toISOString()}
