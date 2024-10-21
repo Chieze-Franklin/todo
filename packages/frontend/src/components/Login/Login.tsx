@@ -6,7 +6,7 @@ const Login = () => {
         const password = formData.get('password') as string;
         console.log(email, password);
 
-        fetch('http://localhost:3000/login', {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
