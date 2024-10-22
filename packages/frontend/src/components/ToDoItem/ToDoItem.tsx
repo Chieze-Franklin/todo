@@ -64,7 +64,7 @@ const ToDoItem = ({ task, groups, onDelete, onToggle, onUpdate }: Props) => {
       {isExpanded && (
           <div className='flex flex-col gap-2 pl-10'>
               <p className='text-xs text-slate-600'>{task.description}</p>
-              <p className='text-xs text-slate-600'>Deadline: {task.deadline?.toLocaleString()}</p>
+              <p className='text-xs text-slate-600'>Deadline: {new Date(task.deadline).toDateString()} {new Date(task.deadline).toTimeString()}</p>
               <div className='flex gap-2'>
                 <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10 ${badgeBgColor(task.priority)} ${badgeTextColor(task.priority)}`}>{task.priority || 'MEDIUM'}</span>
                 <div className='w-full bg-gray-200 rounded-full dark:bg-gray-700'>

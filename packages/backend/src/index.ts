@@ -6,10 +6,12 @@ import {
     createGroup,
     createTask,
     deleteGroup,
+    deleteTask,
     getGroups,
     getTasks,
     jwtAuth,
-    login
+    login,
+    updateTask,
 } from "./routes";
 import dotenv from 'dotenv';
 
@@ -31,7 +33,9 @@ app.delete('/groups/:title', jwtAuth, deleteGroup);
 app.post('/groups', jwtAuth, createGroup);
 
 app.get('/tasks', jwtAuth, getTasks);
+app.delete('/tasks/:id', jwtAuth, deleteTask);
 app.post('/tasks', jwtAuth, createTask);
+app.put('/tasks/:id', jwtAuth, updateTask);
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
