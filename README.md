@@ -138,9 +138,13 @@ Alternatively, you can hit the "sparkles" button to allow our AI create a task f
 
 You can organize your tasks into groups. By default, tasks are added to a `Default Group`.
 
+![Screenshot 2024-10-22 at 10 31 34](https://github.com/user-attachments/assets/efe86b71-eb5f-4023-bbd2-c35211dd6ed1)
+
 You can create new groups and select which group you want as the current group. Any new task created will be automatically added to that group.
 
 You can expand a task and change its group.
+
+![Screenshot 2024-10-22 at 10 33 14](https://github.com/user-attachments/assets/24e7e2fb-8f92-486b-9e06-85ce4bf73e8a)
 
 ### Offline-First
 
