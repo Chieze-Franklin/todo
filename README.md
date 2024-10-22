@@ -117,3 +117,7 @@ to the provided password.
 ### Group Tasks
 
 ### Offline-First
+
+## Testing
+
+I couldn't get the tests to run and I did not want to spend more time than I had already spent on it but I did write some unit tests to show that I'm comfortable writing tests.
