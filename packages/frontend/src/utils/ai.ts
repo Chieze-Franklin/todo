@@ -2,22 +2,18 @@ import { Task } from '../types';
 import ProteusAI from '@proteus-ai/sdk';
 
 const proteus = new ProteusAI({
-    apiKey: '67172e91180c01de9d185cd5',
+    apiKey: import.meta.env.VITE_AI_API_KEY,
 });
 proteus.connected(() => {
     console.log('Connected to ProteusAI');
 });
 
-let conversation = await proteus.conversations.create({ characterId: '67172872180c01de9d185cce' });
+let conversation = await proteus.conversations.create({ characterId: import.meta.env.VITE_AI_CHARACTER_ID });
 
 export const createTaskWithAI = async (prompt: string, callback: (task: Task) => void) => {
     try {
-        // if (!proteus.isConnected) {
-        //     console.log('ProteusAI is not connected');
-        //     throw new Error('ProteusAI is not connected');
-        // }
         if (!conversation) {
-            conversation = await proteus.conversations.create({ characterId: '67172872180c01de9d185cce' });
+            conversation = await proteus.conversations.create({ characterId: import.meta.env.VITE_AI_CHARACTER_ID });
         }
         conversation.on('CHARACTER_MESSAGE_SENT', (message: any) => {
             if (!message.isStreaming) {
