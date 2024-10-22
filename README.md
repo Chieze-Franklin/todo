@@ -136,6 +136,12 @@ Alternatively, you can hit the "sparkles" button to allow our AI create a task f
 
 ### Group Tasks
 
+You can organize your tasks into groups. By default, tasks are added to a `Default Group`.
+
+You can create new groups and select which group you want as the current group. Any new task created will be automatically added to that group.
+
+You can expand a task and change its group.
+
 ### Offline-First
 
 I couldn't find the time to implement a truly progressive web app using service workers so I implemented an offline-first app that stores tasks in the local storage of the Browser. This way, you can
