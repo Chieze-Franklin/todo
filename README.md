@@ -1,6 +1,6 @@
 # #ToDo
 
-![Screenshot 2024-10-21 at 05 03 05](https://github.com/user-attachments/assets/1caeee4c-051b-4a11-997e-df89d555e433)
+![Screenshot 2024-10-22 at 08 50 33](https://github.com/user-attachments/assets/93a5c79a-819a-4ad4-9b1c-593ff63aa6cb)
 
 ## Getting Started
 
