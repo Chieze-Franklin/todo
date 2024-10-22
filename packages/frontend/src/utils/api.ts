@@ -34,6 +34,16 @@ export const deleteGroup = async (title: string) => {
     return response.json();
 }
 
+export const deleteTask = async (id: number) => {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/tasks/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'authorization': `${sessionStorage.getItem('token')}`,
+        },
+    });
+    return response.json();
+}
+
 export const fetchGroups = async () => {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/groups`, {
         headers: {
@@ -48,6 +58,18 @@ export const fetchTasks = async () => {
         headers: {
             'authorization': `${sessionStorage.getItem('token')}`,
         },
+    });
+    return response.json();
+}
+
+export const updateTask = async (id: number, task: Task) => {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': `${sessionStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(task),
     });
     return response.json();
 }

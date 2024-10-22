@@ -14,12 +14,36 @@ export const createGroup = async (req: Request, res: Response) => {
 
 export const deleteGroup = async (req: Request, res: Response) => {
     const { title } = req.params;
-    const group = await prisma.group.deleteMany({
+    const group = await prisma.group.findFirst({
+        where: {
+            title,
+            userId: res.locals.user.id,
+        },
+    });
+    const result = await prisma.group.deleteMany({
         where: {
             title,
         },
     });
-    res.json({ count: group.count });
+
+    const defaultGroup = await prisma.group.findFirst({
+        where: {
+            title: 'Default Group',
+            userId: res.locals.user.id,
+        },
+    });
+    if (group && defaultGroup) {
+        await prisma.task.updateMany({
+            where: {
+                groupId: group.id,
+            },
+            data: {
+                groupId: defaultGroup.id,
+            },
+        });
+    }
+
+    res.json({ count: result.count });
 }
 
 export const getGroups = async (req: Request, res: Response) => {

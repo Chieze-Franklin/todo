@@ -9,8 +9,10 @@ import {
   createGroup as createGroupInDB,
   createTask as createTaskInDB,
   deleteGroup as deleteGroupInDB,
+  deleteTask as deleteTaskInDB,
   fetchGroups as fetchGroupsFromDB,
   fetchTasks as fetchTasksFromDB,
+  updateTask as updateTaskInDB,
 } from '../../utils/api';
 
 const ToDo = () => {
@@ -41,7 +43,7 @@ const ToDo = () => {
 
         alert('Failed to fetch tasks from the database');
       } else {
-        setTasks(res.tasks.map((t: any) => ({ ...t, group: t.group.title })));
+        setTasks(res.tasks.map((t: any) => ({ ...t, group: t.group?.title || DEFAULT_GROUP })));
       }
       setLoading(false);
     }
@@ -119,20 +121,34 @@ const ToDo = () => {
     }
   }
 
-  const deleteTask = (id: number) => {
+  const deleteTask = async (id: number) => {
     setTasks(tasks.filter(task => task.id !== id));
+    const res = await deleteTaskInDB(id);
+    if (res.error) {
+      alert('Failed to delete task from the database');
+    }
   }
 
   const selectGroup = (group: string) => {
     setSelectedGroup(group);
   }
 
-  const toggleTask = (id: number) => {
+  const toggleTask = async (id: number) => {
+    const task = tasks.find(t => t.id === id);
+    if (!task) return;
     setTasks(tasks.map(task => task.id === id ? { ...task, isDone: !task.isDone } : task));
+    const res = await updateTaskInDB(id, { ...task, isDone: !task.isDone });
+    if (res.error) {
+      alert('Failed to update task in the database');
+    }
   }
 
-  const updateTask = (id: number, task: Task) => {
+  const updateTask = async (id: number, task: Task) => {
     setTasks(tasks.map(t => t.id === id ? task : t));
+    const res = await updateTaskInDB(id, task);
+    if (res.error) {
+      alert('Failed to update task in the database');
+    }
   }
 
   return (

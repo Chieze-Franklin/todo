@@ -146,6 +146,22 @@ You can expand a task and change its group.
 
 ![Screenshot 2024-10-22 at 10 33 14](https://github.com/user-attachments/assets/24e7e2fb-8f92-486b-9e06-85ce4bf73e8a)
 
+### Toggle a Task
+
+You can mark a task as done (or undone) simply by clicking on the task (or the "circle" next to it).
+
+### Update a Task
+
+You can update some properties of a task. For instance, you can change the group a task belongs to. You may need to "expand" a task to see it's full list of properties.
+
+**NOTE:** Updating all properties of a task has not been implemented in this time due to insufficient time.
+
+### Delete Tasks and Groups
+
+You can delete a task.
+
+You can also delete a group. This does **NOT** delete the tasks under that group butt moves the tasks to the default group.
+
 ### Offline-First
 
 I couldn't find the time to implement a truly progressive web app using service workers so I implemented an offline-first app that stores tasks in the local storage of the Browser. This way, you can
@@ -163,3 +179,10 @@ Some of the reasons for the time spent are:
 - This is my first time creating a React app with Vite. From time to time something would break and I had to go search the internet for help.
 - This is my first time in a long time using basic Express Js. Over the past few years I have worked with GraphQL or some sort of more abstract framework than Express.
 - I spent a very long time trying to get Jest to work. I did not succeed.
+
+## Missing Functionalities
+
+A number of desired features where not implemented due to insufficient time. These include:
+
+- Updating all properties of a task
+- Sorting/filtering tasks according to properties like priority, progress, etc.
