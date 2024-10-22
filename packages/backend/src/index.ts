@@ -2,7 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { getTasks, jwtAuth, login } from "./routes";
+import {
+    createTask,
+    getTasks,
+    jwtAuth,
+    login
+} from "./routes";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -19,6 +24,7 @@ app.get('/', (req, res) => {
 app.post('/login', login);
 
 app.get('/tasks', jwtAuth, getTasks);
+app.post('/tasks', jwtAuth, createTask);
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');

@@ -1,8 +1,8 @@
-import ToDo from './components/ToDo'
-import Login from './components/Login'
+import Login from './components/Login';
+import ToDo from './components/ToDo';
 
 function App() {
-  const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem('token');
   if (token) {
     return (
       <div className='bg-stone-900 grid py-4 min-h-screen'>
@@ -18,4 +18,4 @@ function App() {
   }
 }
 
-export default App
+export default App;
