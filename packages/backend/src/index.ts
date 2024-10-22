@@ -3,7 +3,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import {
+    createGroup,
     createTask,
+    deleteGroup,
+    getGroups,
     getTasks,
     jwtAuth,
     login
@@ -22,6 +25,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', login);
+
+app.get('/groups', jwtAuth, getGroups);
+app.delete('/groups/:title', jwtAuth, deleteGroup);
+app.post('/groups', jwtAuth, createGroup);
 
 app.get('/tasks', jwtAuth, getTasks);
 app.post('/tasks', jwtAuth, createTask);

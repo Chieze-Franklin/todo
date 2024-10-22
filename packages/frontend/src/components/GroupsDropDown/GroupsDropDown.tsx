@@ -50,7 +50,12 @@ const GroupsDropDown = ({ groups, initialGroup, readonly, onAddGroup, onDeleteGr
           {groups.map((group, index) => (
             <div key={index} className={`flex w-full justify-between items-center pr-2 hover:bg-gray-50 ${selectedGroup === group ? 'bg-orange-300' : ''}`}  onClick={() => selectGroup(group)}>
               <a key={index} className="block px-4 py-2 text-sm text-gray-700" tabIndex={-1} role="menuitem" id={`menu-item-${index}`}>{group}</a>
-              {!readonly && <img src={deleteIcon} alt="delete" className='w-3.5 cursor-pointer' onClick={() => onDeleteGroup && onDeleteGroup(group)} />}
+              {!readonly && <img src={deleteIcon} alt="delete" className='w-3.5 cursor-pointer' onClick={
+                (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  if (onDeleteGroup) onDeleteGroup(group);
+                }
+              } />}
             </div>
           ))}
         </div>

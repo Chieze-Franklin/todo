@@ -1,6 +1,6 @@
+import { Priority } from '@prisma/client';
 import { Request, Response } from 'express';
 import { prisma } from '../prisma';
-import { Priority } from '@prisma/client';
 
 export const createTask = async (req: Request, res: Response) => {
     const { title, description, deadline, group, priority } = req.body;
@@ -36,6 +36,9 @@ export const getTasks = async (req: Request, res: Response) => {
     const tasks = await prisma.task.findMany({
         where: {
             userId: res.locals.user.id,
+        },
+        include: {
+            group: true,
         },
     });
     res.json({ tasks });

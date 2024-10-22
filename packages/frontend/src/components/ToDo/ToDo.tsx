@@ -5,7 +5,13 @@ import { createTaskWithAI } from '../../utils/ai';
 import GroupsDropDown from '../GroupsDropDown';
 import ToDoItem from '../ToDoItem';
 import sparklesIcon from '../../assets/sparkles.svg';
-import { createTask as createTaskInDB } from '../../utils/api';
+import {
+  createGroup as createGroupInDB,
+  createTask as createTaskInDB,
+  deleteGroup as deleteGroupInDB,
+  fetchGroups as fetchGroupsFromDB,
+  fetchTasks as fetchTasksFromDB,
+} from '../../utils/api';
 
 const ToDo = () => {
   const [loading, setLoading] = useState(false);
@@ -15,11 +21,33 @@ const ToDo = () => {
   const [selectedGroup, setSelectedGroup] = useState<string>(DEFAULT_GROUP);
 
   useEffect(() => {
-    const storedGroups = localStorage.getItem('groups');
-    if (storedGroups) setGroups(JSON.parse(storedGroups));
+    const fetchGroups = async () => {
+      const res = await fetchGroupsFromDB();
+      if (res.error) {
+        const storedGroups = localStorage.getItem('groups');
+        if (storedGroups) setGroups(JSON.parse(storedGroups));
 
-    const storedTasks = localStorage.getItem('tasks');
-    if (storedTasks) setTasks(JSON.parse(storedTasks));
+        alert('Failed to fetch groups from the database');
+      } else {
+        setGroups(res.groups.filter((g: any) => g.title !== DEFAULT_GROUP).map((g: any) => g.title));
+      }
+    }
+    const fetchTasks = async () => {
+      setLoading(true);
+      const res = await fetchTasksFromDB();
+      if (res.error) {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) setTasks(JSON.parse(storedTasks));
+
+        alert('Failed to fetch tasks from the database');
+      } else {
+        setTasks(res.tasks.map((t: any) => ({ ...t, group: t.group.title })));
+      }
+      setLoading(false);
+    }
+
+    fetchGroups();
+    fetchTasks();
   }, []);
 
   useEffect(() => {
@@ -35,10 +63,14 @@ const ToDo = () => {
     window.location.reload();
   }
 
-  const addGroup = (group: string) => {
+  const createGroup = async (group: string) => {
     if (group.trim() === '') return;
     if (groups.includes(group)) return;
     setGroups([...groups, group]);
+    const res = await createGroupInDB(group);
+    if (res.error) {
+      alert('Failed to save group in the database');
+    }
   }
 
   const createTask = async (text: string) => {
@@ -79,8 +111,12 @@ const ToDo = () => {
     });
   };
 
-  const deleteGroup = (group: string) => {
+  const deleteGroup = async (group: string) => {
     setGroups(groups.filter(g => g !== group));
+    const res = await deleteGroupInDB(group);
+    if (res.error) {
+      alert('Failed to delete group from the database');
+    }
   }
 
   const deleteTask = (id: number) => {
@@ -107,7 +143,7 @@ const ToDo = () => {
           <div className="flex items-center gap-2">
             <img src={todoIcon} className='w-8' alt="checkmark" />
             <h1 className="text-3xl font-semibold">#ToDo</h1>
-            <GroupsDropDown groups={groups} onAddGroup={addGroup} onDeleteGroup={deleteGroup} onSelectGroup={selectGroup} />
+            <GroupsDropDown groups={groups} onAddGroup={createGroup} onDeleteGroup={deleteGroup} onSelectGroup={selectGroup} />
           </div>
           <a className='block px-4 py-2 text-sm text-blue-600 hover:bg-blue-50' onClick={logout}>Sign Out</a>
         </div>
