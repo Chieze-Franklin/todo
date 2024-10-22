@@ -146,6 +146,13 @@ You can expand a task and change its group.
 
 ![Screenshot 2024-10-22 at 10 33 14](https://github.com/user-attachments/assets/24e7e2fb-8f92-486b-9e06-85ce4bf73e8a)
 
+### Add Task to Calendar
+
+You can add a task to your calendar. There's support for Google, Yahoo, iCal and many other calendars.
+
+If there was sufficient time, I would have implemented a feature where, using AI, the task is added to the _best_
+open slot on the calendar.
+
 ### Toggle a Task
 
 You can mark a task as done (or undone) simply by clicking on the task (or the "circle" next to it).
@@ -172,6 +179,10 @@ continue adding new tasks even if there's no network connection to the backend. 
 I couldn't get the tests to run and I did not want to spend more time than I had already spent on it but I did write some unit tests to show that I'm comfortable writing tests.
 
 ## Time Spent
+
+I started working on this project in the evening of Sunday, October 20, 2024. I made my final submission in the morning of Tuesday, October 22, 2024.
+
+I reckon the total _effective_ time (i.e. not including breaks) spent working on this app is approximately 12 hours, although there's really no way for me t be certain.
 
 Some of the reasons for the time spent are:
 
