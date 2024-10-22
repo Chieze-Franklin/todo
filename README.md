@@ -132,7 +132,12 @@ to the provided password.
 
 You can create a task by describing your task and pressing the `Enter` key.
 
-Alternatively, you can hit the "sparkles" button to allow our AI create a task for you using your description.
+### Create Tasks using AI
+
+To partake in the ongoing AI craze (or abuse) that is sweeping our industry, I added a little AI support.
+
+You can hit the "sparkles" button to allow our AI create a task for you using your description. The AI will attempt to create
+a task with an appropriate title, description, priority, progress, deadline, etc.
 
 ### Group Tasks
 
@@ -190,6 +195,7 @@ Some of the reasons for the time spent are:
 - This is my first time creating a React app with Vite. From time to time something would break and I had to go search the internet for help.
 - This is my first time in a long time using basic Express Js. Over the past few years I have worked with GraphQL or some sort of more abstract framework than Express.
 - I spent a very long time trying to get Jest to work. I did not succeed.
+- Initially, I was not too excited about building a to-do app but as soon as I thought of some cool features to add (including AI support) I did not want to stop.
 
 ## Missing Functionalities
 
