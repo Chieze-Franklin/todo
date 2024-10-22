@@ -19,6 +19,12 @@ To get started run the following commands in the root directory:
 
 To run the Postgresql database without Docker, use whatever method is convenient for you. For instance, you may choose to set up the database locally or remotely.
 
+You can also decide to run only database using Docker by running the following command:
+
+```bash
+docker compose up postgres
+```
+
 #### Server
 
 To run the server, ensure you have the following environment variables set
@@ -61,7 +67,11 @@ For instance:
 
 ```bash
 VITE_SERVER_URL=http://127.0.0.1:3000
+VITE_AI_API_KEY=67172e91180c01de9d185cd5
+VITE_AI_CHARACTER_ID=67172872180c01de9d185cce
 ```
+
+**NOTE:** The above are the actual env values you should use for `VITE_AI_API_KEY` and `VITE_AI_CHARACTER_ID`.
 
 See _packages/frontend/.env.example_
 
@@ -82,6 +92,8 @@ POSTGRES_PASSWORD=
 POSTGRES_DB=
 DATABASE_URL=
 VITE_SERVER_URL=
+VITE_AI_API_KEY=
+VITE_AI_CHARACTER_ID=
 ```
 
 For instance:
@@ -93,7 +105,11 @@ POSTGRES_DB=postgres_db
 DATABASE_URL=postgresql://postgres_user:postgres_password@postgres:5432/postgres_db?schema=public
 SECRET=whatever-you-want
 VITE_SERVER_URL=http://127.0.0.1:3000
+VITE_AI_API_KEY=67172e91180c01de9d185cd5
+VITE_AI_CHARACTER_ID=67172872180c01de9d185cce
 ```
+
+**NOTE:** The above are the actual env values you should use for `VITE_AI_API_KEY` and `VITE_AI_CHARACTER_ID`.
 
 Run `docker compose up -d` in the root directory.
 
@@ -121,6 +137,9 @@ Alternatively, you can hit the "sparkles" button to allow our AI create a task f
 ### Group Tasks
 
 ### Offline-First
+
+I couldn't find the time to implement a truly progressive web app using service workers so I implemented an offline-first app that stores tasks in the local storage of the Browser. This way, you can
+continue adding new tasks even if there's no network connection to the backend. It's not a perfect implementation; it does not "sync" with the API when network connection is re-established.
 
 ## Testing
 
