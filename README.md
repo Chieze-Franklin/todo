@@ -1,6 +1,6 @@
 # #ToDo
 
-![Screenshot 2024-10-21 at 05 03 05](https://github.com/user-attachments/assets/1caeee4c-051b-4a11-997e-df89d555e433)
+![Screenshot 2024-10-22 at 08 50 33](https://github.com/user-attachments/assets/93a5c79a-819a-4ad4-9b1c-593ff63aa6cb)
 
 ## Getting Started
 
@@ -114,6 +114,10 @@ to the provided password.
 
 ### Create Tasks
 
+You can create a task by describing your task and pressing the `Enter` key.
+
+Alternatively, you can hit the "sparkles" button to allow our AI create a task for you using your description.
+
 ### Group Tasks
 
 ### Offline-First
@@ -121,3 +125,12 @@ to the provided password.
 ## Testing
 
 I couldn't get the tests to run and I did not want to spend more time than I had already spent on it but I did write some unit tests to show that I'm comfortable writing tests.
+
+## Time Spent
+
+Some of the reasons for the time spent are:
+
+- This is my first time using Tailwind CSS. I did not want to use a components library for this project so, I decided to use Tailwind CSS. I had to spend time learning how it works.
+- This is my first time creating a React app with Vite. From time to time something would break and I had to go search the internet for help.
+- This is my first time in a long time using basic Express Js. Over the past few years I have worked with GraphQL or some sort of more abstract framework than Express.
+- I spent a very long time trying to get Jest to work. I did not succeed.
