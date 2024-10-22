@@ -10,6 +10,7 @@
         "git:push": "git push origin $(git symbolic-ref --short HEAD)",
         "publish:frontend": "yarn workspace @todo/frontend publish --access public",
         "start:frontend": "yarn workspace @todo/frontend vite preview",
+        "test:backend": "yarn workspace @todo/backend jest --config jest.config.js",
         "version:frontend": "yarn workspace @todo/frontend version patch --new-version $VERSION"
     },
     "workspaces": [

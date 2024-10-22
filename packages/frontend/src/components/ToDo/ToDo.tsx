@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import todoIcon from '../../assets/todo_icon.png';
-import ToDoItem from '../ToDoItem';
-import { Task } from '../../types';
+import { DEFAULT_GROUP, Task } from '../../types';
 import GroupsDropDown from '../GroupsDropDown';
+import ToDoItem from '../ToDoItem';
 
 const ToDo = () => {
   const [inputText, setInputText] = useState('');
   const [tasks, setTasks] = useState<Array<Task>>(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')!) : []);
   const [groups, setGroups] = useState<string[]>(localStorage.getItem('groups') ? JSON.parse(localStorage.getItem('groups')!) : []);
-  const [selectedGroup, setSelectedGroup] = useState<string>('Default Group');
+  const [selectedGroup, setSelectedGroup] = useState<string>(DEFAULT_GROUP);
 
   useEffect(() => {
     const storedGroups = localStorage.getItem('groups');
@@ -48,8 +48,6 @@ const ToDo = () => {
   }
 
   const selectGroup = (group: string) => {
-    // if (!group || group === 'Default Group') return setTasks(tasks);
-    // setTasks(tasks.filter(task => task.group === group));
     setSelectedGroup(group);
   }
 

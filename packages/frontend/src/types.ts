@@ -14,3 +14,5 @@ export enum Priority {
     MEDIUM = 'MEDIUM',
     HIGH = 'HIGH',
 };
+
+export const DEFAULT_GROUP = 'Default Group';
